@@ -1,0 +1,27 @@
+﻿@using GenericReport.Helpers
+@model GenericReport.Helpers.ReportData
+
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+@foreach (KeyValuePair<string, string> kvp in Model.Data[0])
+{
+            <th>@kvp.Key</th>
+}
+        </tr>
+    </thead>
+    <tbody>
+
+@foreach (List<KeyValuePair<string, string>> record in Model.Data)
+{
+        <tr>
+        @foreach (KeyValuePair<string, string> kvp in record)
+        {
+            <td>@(Html.Raw(kvp.FixDateValue(ReportBoolType.HtmlChecked, ReportDateType.ShortDateString)))</td>
+        }
+        </tr>
+}
+    </tbody>
+</table>
+
